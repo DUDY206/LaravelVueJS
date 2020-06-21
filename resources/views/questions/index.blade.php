@@ -5,12 +5,31 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">All questions</div>
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <h2>All Question</h2>
+                            <div class="ml-auto">
+                                <a href="{{route('questions.create')}}" class="btn btn-secondary">Ask question</a>
+                            </div>
+                        </div>
+
+                    </div>
 
                     <div class="card-body">
-
+                        @include('layouts._messages')
                         @foreach($questions as $question)
                             <div class="media">
+                                <div class="d-flex-column counters">
+                                    <div class="vote">
+                                        <strong>{{$question->vote}}</strong> {{str_plural('vote',$question->vote)}}
+                                    </div>
+                                    <div class="answer">
+                                        <strong>{{$question->answers}}</strong> {{str_plural('answer',$question->answers)}}
+                                    </div>
+                                    <div class="views">
+                                        {{$question->views.' '.str_plural('views',$question->views)}}
+                                    </div>
+                                </div>
                                 <div class="media-body">
                                     <h3 class="mt-0"><a href="{{$question->url}}">{{$question->title}}</a>
 

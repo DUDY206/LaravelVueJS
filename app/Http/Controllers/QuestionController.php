@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AskQuestionRequest;
 use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,7 @@ class QuestionController extends Controller
     public function index()
     {
 //        DB::enableQueryLog();
-        $questions = Question::with('user')->paginate(10);
+        $questions = Question::with('user')->orderBy('created_at','desc')->paginate(10);
         return    view('questions.index',compact('questions'));
 
 //        dd(DB::getQueryLog());
@@ -29,7 +30,9 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        $question = new Question();
+
+        return view('questions.create',compact('question'));
     }
 
     /**
@@ -38,9 +41,11 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AskQuestionRequest $request)
     {
-        //
+        $request->user()->question()->create($request->only('title','body'));
+
+        return redirect()->route('questions.index')->with('success','Your question have been submitted');
     }
 
     /**

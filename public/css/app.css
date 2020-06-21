@@ -10928,3 +10928,19 @@ a.text-dark:focus {
   }
 }
 
+.counters {
+  margin-right: 30px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.counters .vote .answer {
+  width: 60px;
+  height: 60px;
+}
+
+.counters strong {
+  display: block;
+  font-size: 2em;
+}
+
