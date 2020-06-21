@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Parsedown;
 
 class Question extends Model
 {
@@ -19,9 +20,13 @@ class Question extends Model
     }
 
     public function getUrlAttribute(){
-        return route("questions.show",$this->id);
+        return route("questions.show",$this->slug);
     }
     public function getCreatedDateAttribute(){
         return $this->created_at->diffForHumans();
+    }
+
+    public function getBodyHtmlAttribute(){
+        return Parsedown::instance()->text($this->body);
     }
 }
