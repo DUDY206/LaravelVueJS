@@ -10944,3 +10944,7 @@ a.text-dark:focus {
   font-size: 2em;
 }
 
+form.form-delete {
+  display: inline;
+}
+
