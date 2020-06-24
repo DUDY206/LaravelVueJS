@@ -32,6 +32,10 @@ class Answer extends Model
         static::saved(function ($answer){
             echo "Answer saved\n";
         });
+
+        static::deleted(function ($answer){
+            $answer->question->decrement('answers_count');
+        });
     }
 
     public function getCreatedDateAttribute(){
