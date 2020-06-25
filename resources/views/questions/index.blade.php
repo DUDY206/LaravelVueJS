@@ -21,7 +21,7 @@
                             <div class="media">
                                 <div class="d-flex-column counters">
                                     <div class="vote">
-                                        <strong>{{$question->vote}}</strong> {{str_plural('vote',$question->vote)}}
+                                        <strong>{{$question->votes_count}}</strong> {{str_plural('vote',$question->votes_count)}}
                                     </div>
                                     <div class="answer">
                                         <strong>{{$question->answers_count}}</strong> {{str_plural('answer',$question->answers_count)}}
