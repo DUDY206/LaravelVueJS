@@ -17,53 +17,20 @@
                         </div>
 
                         <div class="media">
-                            <div class="d-flex flex-column vote-controls">
-                                <a href="" title="This question is useful"
-                                   class="vote-up {{\Illuminate\Support\Facades\Auth::guest() ? 'off' : ''}}"
-                                   onclick="event.preventDefault(); document.getElementById('up-vote-question-{{$question->id}}').submit();"
-                                >
-                                    <i class="fas fa-caret-up fa-2x"></i>
-                                </a>
-                                <form style="display: none" action="/questions/{{$question->id}}/vote" method="POST" id="up-vote-question-{{$question->id}}">
-                                    @csrf
-                                    <input type="hidden" name="vote" value="1">
-                                </form>
-                                <span class="votes-count">{{$question->votes_count}}</span>
-                                <a
-                                    class="vote-down {{\Illuminate\Support\Facades\Auth::guest() ? 'off' : ''}}" href="" title="This question is not useful"
-                                    onclick="event.preventDefault(); document.getElementById('down-vote-question-{{$question->id}}').submit();"
-                                >
-                                    <i class="fas fa-caret-down fa-2x"></i>
-                                </a>
-                                <form style="display: none" action="/questions/{{$question->id}}/vote" method="POST" id="down-vote-question-{{$question->id}}">
-                                    @csrf
-                                    <input type="hidden" name="vote" value="-1">
-                                </form>
-
-                                <a href="" title="Click to mark as favorite question (Click again to udno)" class="favorite mt-2  {{\Illuminate\Support\Facades\Auth::guest() ? 'off' :
-                                ($question->is_favorited ? 'favorited' : '')}}"
-                                    onclick="event.preventDefault(); document.getElementById('favorite-question-{{$question->id}}').submit();"
-                                >
-                                    <i class="fas fa-star fa-2x"></i>
-                                    <span class="favorite-count">{{$question->favorites_count}}</span>
-                                </a>
-                                <form style="display: none" action="/questions/{{$question->id}}/favorites" method="POST" id="favorite-question-{{$question->id}}">
-                                    @csrf
-                                    @if($question->is_favorited)
-                                        @method('DELETE')
-                                    @endif
-                                </form>
-                            </div>
+                            @include('shared._vote',[
+                                'model' => $question,
+                            ])
                             <div class="media-body">
 
                             {!! $question->body_html !!}
-                            <div class="float-right">
-                                <span class="text-muted">Answered {{$question->created_date}}</span>
-                                <div class="media">
-                                    <a href="{{ $question->user->url }}" class="pr-2"><img src="{{$question->user->avatar}}" alt=""></a>
-                                    <div class="media-body">
-                                        <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
-                                    </div>
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-4"></div>
+                                <div class="col-4">
+                                    @include('shared._author',[
+                                        'model' => $question,
+                                        'lable' => 'Asked'
+                                    ])
                                 </div>
                             </div>
                             </div>
