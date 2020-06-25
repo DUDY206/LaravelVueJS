@@ -1,4 +1,4 @@
-<span class="text-muted">{{$lable." ".$model->created_date}}</span>
+<span class="text-muted">{{$label." ".$model->created_date}}</span>
 <div class="media">
     <a href="{{ $model->user->url }}" class="pr-2"><img src="{{$model->user->avatar}}" alt=""></a>
     <div class="media-body">
