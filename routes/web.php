@@ -27,3 +27,5 @@ Route::resource('questions.answers','AnswersController')->except(['index','creat
 Route::get('/questions/{slug}','QuestionController@show')->name('questions.show');
 
 Route::post('/answers/{answer}/accept','AcceptAnswerController')->name('answers.accept');
+Route::post('/questions/{question}/favorites','FavoritesController@store')->name('questions.favorites');
+Route::delete('/questions/{question}/favorites','FavoritesController@destroy')->name('questions.unfavorites');

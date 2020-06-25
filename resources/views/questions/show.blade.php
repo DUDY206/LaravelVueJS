@@ -25,10 +25,17 @@
                                 <a class="vote-down off" href="" title="This question is not useful">
                                     <i class="fas fa-caret-down fa-2x"></i>
                                 </a>
-                                <a href="" title="Click to mark as favorite question (Click again to udno)" class="favorite mt-2 favorited">
+                                <a href="" title="Click to mark as favorite question (Click again to udno)" class="favorite mt-2  {{\Illuminate\Support\Facades\Auth::guest() ? 'off' :
+                                ($question->is_favorited ? 'favorited' : '')}}" onclick="event.preventDefault(); document.getElementById('favorite-question-{{$question->id}}').submit();">
                                     <i class="fas fa-star fa-2x"></i>
-                                    <span class="favorite-count">123</span>
+                                    <span class="favorite-count">{{$question->favorites_count}}</span>
                                 </a>
+                                <form style="display: none" action="/questions/{{$question->id}}/favorites" method="POST" id="favorite-question-{{$question->id}}">
+                                    @csrf
+                                    @if($question->is_favorited)
+                                        @method('DELETE')
+                                    @endif
+                                </form>
                             </div>
                             <div class="media-body">
 
