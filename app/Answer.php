@@ -29,9 +29,9 @@ class Answer extends Model
             $answer->question->save();
         });
 
-        static::saved(function ($answer){
-            echo "Answer saved\n";
-        });
+//        static::saved(function ($answer){
+//            echo "Answer saved\n";
+//        });
 
         static::deleted(function ($answer){
             $answer->question->decrement('answers_count');
