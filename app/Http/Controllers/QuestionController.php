@@ -23,7 +23,7 @@ class QuestionController extends Controller
     public function index()
     {
 //        DB::enableQueryLog();
-        $questions = Question::with('user')->orderBy('created_at','desc')->paginate(10);
+        $questions = Question::with('user')->orderBy('created_at','desc')->paginate(5);
         return    view('questions.index',compact('questions'));
 
 //        dd(DB::getQueryLog());
