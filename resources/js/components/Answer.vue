@@ -64,17 +64,6 @@
                     ],
 
                 });
-                ///////////////////////
-                // if(confirm('Are you sure?????')){
-                //     // console.log("Here we are");
-                //     // console.log(this);
-                //     axios.delete(this.endpoint)
-                //     .then(res => {
-                //         $(this.$el).fadeOut(500, () => {
-                //             this.$toast.success(res.data.message,"Success",{timeout:3000});
-                //         });
-                //     });
-                // }
             }
         },
         computed:{
