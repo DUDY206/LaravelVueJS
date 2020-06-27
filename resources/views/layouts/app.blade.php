@@ -10,7 +10,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/1055880cf4.js" crossorigin="anonymous"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -76,5 +75,13 @@
             @yield('content')
         </main>
     </div>
+    <script>
+        window.Auth = {!! json_encode([
+            'signedIn' => \Illuminate\Support\Facades\Auth::check(),
+            'user' => \Illuminate\Support\Facades\Auth::user()
+        ]) !!}
+    </script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
 </body>
 </html>
