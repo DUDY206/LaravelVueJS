@@ -9,9 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AnswersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
 
-
-
+    public function index(Question $question){
+        return $question->answers()->with('user')->simplePaginate(3);
+    }
 
     public function store(Question $question,Request $request)
     {
