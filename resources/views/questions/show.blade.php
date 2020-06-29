@@ -38,6 +38,5 @@
 
        <answers :question="{{$question}}" :count="{{$question->answers_count}}"></answers>
 
-        @include('answers._create')
     </div>
 @endsection
