@@ -40,7 +40,7 @@ class Question extends Model
         return  "unanswers";
     }
     public function getBodyHtmlAttribute(){
-        return clean($this->bodyHtml());
+        return clean(Parsedown::instance()->text($this->body));
     }
 
     public function answers(){
