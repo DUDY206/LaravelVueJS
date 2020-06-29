@@ -4,9 +4,7 @@
         <div class="media-body">
             <form @submit.prevent="update" v-if="editing"  >
                 <div class="form-group">
-                    <textarea v-model ="body" rows="10" class="form-control" required>
-
-                    </textarea>
+                    <textarea v-model ="body" rows="10" class="form-control" required></textarea>
                 </div>
                 <button  class="btn btn-primary" :disabled="isInvalid">Update</button>
                 <button @click="cancel" class="btn btn-outline-primary">Cancel</button>
@@ -31,9 +29,14 @@
 </template>
 
 <script>
+    import Vote from "./Vote";
+    import UserInfo from "./UserInfo.vue";
     export default {
         name: "Answer",
         props: ['answer'],
+        components:{
+            Vote,UserInfo
+        },
         data () {
             return {
                 editing : false,
